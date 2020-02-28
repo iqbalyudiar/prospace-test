@@ -1,0 +1,7 @@
+export const ADD_COMPANY = "ADD_COMPANY";
+export const FETCH_COMPANY = "FETCH_COMPANY";
+export const FETCH_COMPANIES = "FETCH_COMPANIES";
+export const DELETE_COMPANY = "DELETE_COMPANY";
+export const ADD_OFFICE = "ADD_OFFICE";
+export const FETCH_OFFICES = "FETCH_OFFICES";
+export const DELETE_OFFICE = "DELETE_OFFICE";
