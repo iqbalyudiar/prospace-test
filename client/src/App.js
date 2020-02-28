@@ -7,18 +7,6 @@ import OfficePage from "./components/Pages/OfficePage";
 // import Home from "./components/Home/Home";
 
 function App() {
-  // const DefaultRoute = ({ component: Component, ...rest }) => {
-  //   return (
-  //     <Route
-  //       {...rest}
-  //       render={props => (
-  //         <div>
-  //           <Component {...props} />
-  //         </div>
-  //       )}
-  //     />
-  //   );
-  // };
   return (
     <div>
       <Router>
