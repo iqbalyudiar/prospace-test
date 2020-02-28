@@ -1,10 +1,9 @@
 import {
   ADD_COMPANY,
   FETCH_COMPANY,
-  FETCH_COMPANIES,
   DELETE_COMPANY,
   ADD_OFFICE,
-  FETCH_OFFICES,
+  FETCH_OFFICE,
   DELETE_OFFICE
 } from "../actions/types";
 const INITIAL_STATE = {
@@ -18,8 +17,6 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, company: state.company.concat(action.payload) };
     case FETCH_COMPANY:
       return { ...state, company: action.payload };
-    case FETCH_COMPANIES:
-      return { ...state, company: action.payload };
     case DELETE_COMPANY:
       return {
         ...state,
@@ -29,7 +26,7 @@ export default (state = INITIAL_STATE, action) => {
       };
     case ADD_OFFICE:
       return { ...state, office: state.office.concat(action.payload) };
-    case FETCH_OFFICES:
+    case FETCH_OFFICE:
       return { ...state, office: action.payload };
     case DELETE_OFFICE:
       return {
