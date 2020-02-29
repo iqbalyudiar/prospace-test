@@ -47,10 +47,18 @@ const CompanyDetail = props => {
               </Col>
               <Col>
                 <Button
-                  style={{ float: "right", marginTop: "1em" }}
+                  style={{
+                    float: "right",
+                    marginTop: "1em"
+                  }}
                   variant="secondary"
                 >
-                  <Link to="/">Back to Overview</Link>
+                  <Link
+                    style={{ color: "#ffffff", textDecoration: "none" }}
+                    to="/"
+                  >
+                    Back to Overview
+                  </Link>
                 </Button>
               </Col>
             </Row>

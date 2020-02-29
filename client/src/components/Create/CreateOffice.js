@@ -63,8 +63,8 @@ const CreateOffice = props => {
   console.log(input);
 
   return (
-    <div>
-      <h2>Create Office</h2>
+    <div style={{ margin: "1rem" }}>
+      <h2 className="border-bottom border-secondary">Create Office</h2>
       {validation && <Alert variant="danger">{message}</Alert>}
       <Form>
         <FormGroup controlId="name">
@@ -122,7 +122,7 @@ const CreateOffice = props => {
 
         <Button
           onClick={e => createOfficeForm(e, input.company)}
-          variant="secondary"
+          variant="primary"
           block
         >
           Create

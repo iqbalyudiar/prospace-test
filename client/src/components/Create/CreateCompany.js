@@ -65,8 +65,8 @@ const CreateCompany = props => {
   };
 
   return (
-    <div>
-      <h2>Create Company</h2>
+    <div style={{ margin: "1rem" }}>
+      <h2 className="border-bottom border-secondary">Create Company</h2>
       {validation && <Alert variant="danger">{message}</Alert>}
       <Form onSubmit={e => createCompanyForm(e)}>
         <FormGroup controlId="nameCompany">
@@ -118,7 +118,7 @@ const CreateCompany = props => {
           </Row>
         </FormGroup>
 
-        <Button onClick={e => createCompanyForm(e)} variant="secondary" block>
+        <Button onClick={e => createCompanyForm(e)} variant="primary" block>
           Create
         </Button>
       </Form>

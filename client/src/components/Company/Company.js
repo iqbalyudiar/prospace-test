@@ -26,11 +26,16 @@ const Company = props => {
   return (
     <>
       {props.companies.length === 0 ? (
-        <Spinner></Spinner>
+        <p style={{ margin: "1rem" }} className="display-4">
+          There is No Company Created Yet !
+        </p>
       ) : (
         props.companies.map(company => (
           <>
-            <Card>
+            <Card
+              style={{ width: "20rem", margin: "1rem" }}
+              className="shadow-lg bg-light"
+            >
               <Card.Body>
                 <Card.Title style={{ borderBottom: "1px solid grey" }}>
                   <Row>
@@ -43,6 +48,7 @@ const Company = props => {
                     </Col>
                     <Col>
                       <Button
+                        variant="danger"
                         className="float-right"
                         onClick={() => handleShow(company._id)}
                       >

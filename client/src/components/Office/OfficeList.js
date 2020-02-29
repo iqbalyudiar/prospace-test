@@ -1,16 +1,14 @@
 import React from "react";
 
 import Office from "./Office";
-import { Row, Col } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 
 const OfficeList = () => {
   return (
-    <div>
-      <h2>Offices</h2>
+    <div className="m-3">
+      <h2 className="border-bottom border-light">Offices</h2>
       <Row>
-        <Col>
-          <Office />
-        </Col>
+        <Office />
       </Row>
     </div>
   );

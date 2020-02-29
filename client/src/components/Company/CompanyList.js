@@ -1,18 +1,16 @@
 import React from "react";
 
 import Company from "./Company";
-import { Row, Col } from "react-bootstrap";
+import { Row, Container } from "react-bootstrap";
 
-const CompanyList = ({ lists }) => {
+const CompanyList = () => {
   return (
-    <div>
+    <Container>
       <h2>Companies</h2>
       <Row>
-        <Col>
-          <Company lists={lists} />
-        </Col>
+        <Company />
       </Row>
-    </div>
+    </Container>
   );
 };
 
