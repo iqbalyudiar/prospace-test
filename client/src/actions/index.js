@@ -39,3 +39,13 @@ export const fetchCompany = () => async dispatch => {
 
   dispatch({ type: FETCH_COMPANY, payload: response.data });
 };
+
+export const deleteCompany = id => async dispatch => {
+  await forms.delete(`/forms/company/${id}`, {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+
+  dispatch({ type: DELETE_COMPANY, payload: id });
+};

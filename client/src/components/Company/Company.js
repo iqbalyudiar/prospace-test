@@ -4,21 +4,24 @@ import { Card, Col, Row, Modal, Button } from "react-bootstrap";
 
 // import { deleteCompany } from "../../actions";
 import { fetchCompany } from "../../actions";
+import { deleteCompany } from "../../actions";
 import { connect } from "react-redux";
 
 const Company = props => {
+  const [companyId, setCompanyId] = useState("");
   const [show, setShow] = useState(false);
-  const handleShow = () => setShow(true);
+
+  const handleShow = id => {
+    setShow(true);
+    setCompanyId(id);
+  };
   const handleClose = () => setShow(false);
 
-  console.log(props.companies);
-
-  // const handleDelete = id => {
-  //   const { deleteCompany } = props;
-  //   fetch(`http://localhost:8080/forms/company/` + id, {
-  //     method: "DELETE"
-  //   }).then(() => deleteCompany(id));
-  // };
+  const handleDelete = async id => {
+    const { deleteCompany } = props;
+    await deleteCompany(id);
+    await window.location.reload();
+  };
 
   return (
     <>
@@ -30,13 +33,14 @@ const Company = props => {
                 <Row>
                   <Col>
                     <h3>
-                      <Link to={`/company/${company.companyId}`}>
-                        {company.name}
-                      </Link>
+                      <Link to={`/company/${company._id}`}>{company.name}</Link>
                     </h3>
                   </Col>
                   <Col>
-                    <Button className="float-right" onClick={handleShow}>
+                    <Button
+                      className="float-right"
+                      onClick={() => handleShow(company._id)}
+                    >
                       X
                     </Button>
                   </Col>
@@ -67,7 +71,9 @@ const Company = props => {
               <Button variant="secondary" onClick={handleClose}>
                 No
               </Button>
-              <Button variant="danger">Yes</Button>
+              <Button variant="danger" onClick={() => handleDelete(companyId)}>
+                Yes
+              </Button>
             </Modal.Footer>
           </Modal>
         </>
@@ -76,10 +82,12 @@ const Company = props => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   return {
     companies: state.form.companies
   };
 };
 
-export default connect(mapStateToProps, { fetchCompany })(Company);
+export default connect(mapStateToProps, { fetchCompany, deleteCompany })(
+  Company
+);
