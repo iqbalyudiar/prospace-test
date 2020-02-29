@@ -12,8 +12,6 @@ const CreateOffice = props => {
     companyId: ""
   });
 
-  // const [companyId, setCompanyId] = useState("");
-
   const handleInput = e => {
     const { name, value } = e.target;
     setInput({
@@ -25,6 +23,7 @@ const CreateOffice = props => {
   const createOfficeForm = e => {
     e.preventDefault();
     props.addOffice(input);
+    window.location.reload();
   };
 
   console.log(input);

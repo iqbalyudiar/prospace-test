@@ -207,6 +207,7 @@ exports.createOffice = (req, res) => {
     });
   }
   const form = new OfficeForm({
+    companyId: body.companyId,
     name: body.name,
     latitude: body.latitude,
     longitude: body.longitude,

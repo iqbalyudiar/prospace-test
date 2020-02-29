@@ -48,11 +48,7 @@ export const fetchCompany = id => async dispatch => {
 };
 
 export const deleteCompany = id => async dispatch => {
-  await forms.delete(`/forms/company/${id}`, {
-    headers: {
-      "Content-Type": "application/json"
-    }
-  });
+  await forms.delete(`/forms/company/${id}`);
 
   dispatch({ type: DELETE_COMPANY, payload: id });
 };
@@ -65,7 +61,7 @@ export const addOffice = office => async dispatch => {
     }
   );
 
-  dispatch({ type: ADD_OFFICE, payload: response });
+  dispatch({ type: ADD_OFFICE, payload: response.data });
 };
 
 export const fetchOffices = id => async dispatch => {

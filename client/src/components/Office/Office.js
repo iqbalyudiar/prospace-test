@@ -7,8 +7,8 @@ import { connect } from "react-redux";
 import { fetchOffices, deleteOffice } from "../../actions";
 
 const Office = props => {
-  let match = useRouteMatch("/forms/company/:companyId");
-  const { companyId } = match.params;
+  let match = useRouteMatch("/forms/company/:companyID");
+  const { companyID } = match.params;
   const [show, setShow] = useState(false);
   const [ids, setIds] = useState({
     company: "",
@@ -18,7 +18,7 @@ const Office = props => {
   const handleShow = id => {
     setShow(true);
     setIds({
-      company: companyId,
+      company: companyID,
       office: id
     });
 
@@ -37,7 +37,7 @@ const Office = props => {
   const handleDelete = async id => {
     const { deleteOffice } = props;
     setIds({
-      company: companyId,
+      company: companyID,
       office: id
     });
     await deleteOffice(ids);
@@ -46,61 +46,70 @@ const Office = props => {
   };
 
   useEffect(() => {
-    props.fetchOffices(companyId);
+    props.fetchOffices(companyID);
   }, []);
   return (
     <>
-      {props.offices.map(office => (
-        <>
-          <Card>
-            <Card.Body>
-              <Card.Title style={{ borderBottom: "1px solid grey" }}>
-                <Row>
-                  <Col>
-                    <h3>{office.name}</h3>
-                  </Col>
-                  <Col>
-                    <Button
-                      className="float-right"
-                      onClick={() => handleShow(office._id)}
-                    >
-                      X
-                    </Button>
-                  </Col>
-                </Row>
-              </Card.Title>
-              <Card.Text>
-                <p className="font-weight-bold m-0">Location</p>
-                <p className="text-secondary m-0">Lat - {office.latitude}</p>
-                <p className="text-secondary m-0">long - {office.longitude}</p>
-              </Card.Text>
-              <Card.Text>
-                <p className="font-weight-bold m-0">Office Start Date</p>
-                <p className="text-secondary">{office.officeDate}</p>
-              </Card.Text>
-            </Card.Body>
-          </Card>
-          <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton>
-              <Modal.Title></Modal.Title>
-            </Modal.Header>
-            <Modal.Body>Are You Sure to Delete this Office?</Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
-                No
-              </Button>
-              <Button variant="danger" onClick={() => handleDelete(office._id)}>
-                Yes
-              </Button>
-            </Modal.Footer>
-          </Modal>
-        </>
-      ))}
+      {props.offices.map(office =>
+        office.companyId !== companyID ? (
+          <></>
+        ) : (
+          <>
+            <Card>
+              <Card.Body>
+                <Card.Title style={{ borderBottom: "1px solid grey" }}>
+                  <Row>
+                    <Col>
+                      <h3>{office.name}</h3>
+                    </Col>
+                    <Col>
+                      <Button
+                        className="float-right"
+                        onClick={() => handleShow(office._id)}
+                      >
+                        X
+                      </Button>
+                    </Col>
+                  </Row>
+                </Card.Title>
+                <Card.Text>
+                  <p className="font-weight-bold m-0">Location</p>
+                  <p className="text-secondary m-0">Lat - {office.latitude}</p>
+                  <p className="text-secondary m-0">
+                    long - {office.longitude}
+                  </p>
+                </Card.Text>
+                <Card.Text>
+                  <p className="font-weight-bold m-0">Office Start Date</p>
+                  <p className="text-secondary">{office.officeDate}</p>
+                </Card.Text>
+              </Card.Body>
+            </Card>
+            <Modal show={show} onHide={handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title></Modal.Title>
+              </Modal.Header>
+              <Modal.Body>Are You Sure to Delete this Office?</Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>
+                  No
+                </Button>
+                <Button
+                  variant="danger"
+                  onClick={() => handleDelete(office._id)}
+                >
+                  Yes
+                </Button>
+              </Modal.Footer>
+            </Modal>
+          </>
+        )
+      )}
     </>
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   return {
     offices: state.form.offices
   };
