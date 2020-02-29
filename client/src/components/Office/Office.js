@@ -40,7 +40,7 @@ const Office = props => {
   };
 
   useEffect(() => {
-    dispatch(fetchOffices(companyID));
+    dispatch(fetchOffices(companyID)); // eslint-disable-next-line
   }, [dispatch]);
   return (
     <>

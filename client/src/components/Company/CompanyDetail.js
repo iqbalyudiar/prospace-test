@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
 import { Card, Col, Button } from "react-bootstrap";
 import { Row } from "react-bootstrap";
 
@@ -19,7 +18,7 @@ const CompanyDetail = props => {
   const company = props.companies;
 
   useEffect(() => {
-    dispatch(fetchCompany(compId));
+    dispatch(fetchCompany(compId)); // eslint-disable-next-line
   }, [dispatch]);
 
   return (
@@ -53,12 +52,12 @@ const CompanyDetail = props => {
                   }}
                   variant="secondary"
                 >
-                  <Link
+                  <a
+                    href="/"
                     style={{ color: "#ffffff", textDecoration: "none" }}
-                    to="/"
                   >
                     Back to Overview
-                  </Link>
+                  </a>
                 </Button>
               </Col>
             </Row>

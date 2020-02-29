@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Card, Col, Row, Modal, Button, Spinner } from "react-bootstrap";
+import { Card, Col, Row, Modal, Button } from "react-bootstrap";
 
 // import { deleteCompany } from "../../actions";
 import { fetchCompanies } from "../../actions";
@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 const Company = props => {
   const [companyId, setCompanyId] = useState("");
   const [show, setShow] = useState(false);
+  console.log(props.companies);
 
   const handleShow = id => {
     setShow(true);

@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import OverviewPage from "./components/Pages/OverviewPage";
 import OfficePage from "./components/Pages/OfficePage";
-// import Home from "./components/Home/Home";
 
 function App() {
   return (

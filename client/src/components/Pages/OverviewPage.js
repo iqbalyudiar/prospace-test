@@ -13,6 +13,8 @@ const OverviewPage = props => {
     dispatch(fetchCompanies());
   }, [dispatch]);
 
+  // console.log(props.location.state.isReload);
+
   return (
     <Container>
       <Card>
