@@ -11,6 +11,7 @@ const OverviewPage = props => {
   useEffect(() => {
     props.fetchCompany();
   }, []);
+
   return (
     <Card>
       <Row>

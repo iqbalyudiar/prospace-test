@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { Form, FormGroup, Button, Row, Col } from "react-bootstrap";
 
-// import axios from "axios";
-// import forms from "../../apis/forms";
-
 import { connect } from "react-redux";
 import { addCompany } from "../../actions";
 
@@ -24,12 +21,14 @@ const CreateCompany = props => {
     });
   };
 
-  const createCompanyForm = e => {
+  const createCompanyForm = async e => {
     e.preventDefault();
 
-    props.addCompany(input);
+    await props.addCompany(input);
 
     console.log(input);
+
+    await window.location.reload();
   };
   console.log(props.companies);
 

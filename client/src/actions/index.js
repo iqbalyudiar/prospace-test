@@ -49,3 +49,14 @@ export const deleteCompany = id => async dispatch => {
 
   dispatch({ type: DELETE_COMPANY, payload: id });
 };
+
+export const addOffice = office => async dispatch => {
+  const response = await forms.post(
+    `forms/company/${office.companyId}/office`,
+    {
+      ...office
+    }
+  );
+
+  dispatch({ type: ADD_OFFICE, payload: response });
+};

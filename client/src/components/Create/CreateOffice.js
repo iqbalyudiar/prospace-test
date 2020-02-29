@@ -1,42 +1,102 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, FormGroup, Row, Col, Button } from "react-bootstrap";
+import { connect } from "react-redux";
+import { addOffice } from "../../actions";
 
-const CreateOffice = () => {
+const CreateOffice = props => {
+  const [input, setInput] = useState({
+    name: "",
+    latitude: "",
+    longitude: "",
+    officeDate: "",
+    companyId: ""
+  });
+
+  // const [companyId, setCompanyId] = useState("");
+
+  const handleInput = e => {
+    const { name, value } = e.target;
+    setInput({
+      ...input,
+      [name]: value
+    });
+
+    // setCompanyId(input.company);
+  };
+
+  // const handleSelect = e => {
+  //   const { value } = e.target;
+  //   setInput({
+  //     company: value
+  //   });
+  // };
+
+  const createOfficeForm = e => {
+    e.preventDefault();
+    props.addOffice(input);
+  };
+
+  console.log(input);
+  // console.log(companyId);
+
   return (
     <div>
       <h2>Create Office</h2>
       <Form>
         <FormGroup controlId="name">
           <Form.Label>Name:</Form.Label>
-          <Form.Control type="text" placeholder="name" />
+          <Form.Control
+            onChange={handleInput}
+            name="name"
+            type="text"
+            placeholder="name"
+          />
         </FormGroup>
         <FormGroup controlId="location">
           <Form.Label>Location:</Form.Label>
           <Row>
             <Col>
-              <Form.Control type="text" placeholder="latitude" />
+              <Form.Control
+                onChange={handleInput}
+                name="latitude"
+                type="text"
+                placeholder="latitude"
+              />
             </Col>
             <Col>
-              <Form.Control type="text" placeholder="longitude" />
+              <Form.Control
+                onChange={handleInput}
+                name="longitude"
+                type="text"
+                placeholder="longitude"
+              />
             </Col>
           </Row>
         </FormGroup>
         <FormGroup controlId="date">
           <Form.Label>Office Start Date:</Form.Label>
-          <Form.Control type="date" placeholder="date" />
+          <Form.Control
+            onChange={handleInput}
+            name="officeDate"
+            type="date"
+            placeholder="date"
+          />
         </FormGroup>
         <FormGroup controlId="company">
           <Form.Label>Company:</Form.Label>
-          <Form.Control as="select">
+          <Form.Control name="companyId" onChange={handleInput} as="select">
             <option>Select Company</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
+            {props.companies.map(company => (
+              <option value={company._id}>{company.name}</option>
+            ))}
           </Form.Control>
         </FormGroup>
-        <Button variant="secondary" block>
+
+        <Button
+          onClick={e => createOfficeForm(e, input.company)}
+          variant="secondary"
+          block
+        >
           Create
         </Button>
       </Form>
@@ -44,4 +104,10 @@ const CreateOffice = () => {
   );
 };
 
-export default CreateOffice;
+const mapStateToProps = state => {
+  return {
+    companies: state.form.companies
+  };
+};
+
+export default connect(mapStateToProps, { addOffice })(CreateOffice);
