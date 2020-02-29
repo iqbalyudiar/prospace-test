@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Form, FormGroup, Row, Col, Button, Alert } from "react-bootstrap";
+import {
+  Form,
+  FormGroup,
+  Row,
+  Col,
+  Button,
+  Alert,
+  Spinner
+} from "react-bootstrap";
 import { connect } from "react-redux";
 import { addOffice } from "../../actions";
 
@@ -11,6 +19,8 @@ const CreateOffice = props => {
     officeDate: "",
     companyId: ""
   });
+
+  console.log(props.companies.length);
 
   const [validation, setValidation] = useState(false);
   const [message, setMessage] = useState("");
@@ -100,9 +110,13 @@ const CreateOffice = props => {
           <Form.Label>Company:</Form.Label>
           <Form.Control name="companyId" onChange={handleInput} as="select">
             <option>Select Company</option>
-            {props.companies.map(company => (
-              <option value={company._id}>{company.name}</option>
-            ))}
+            {props.companies.length === 0 ? (
+              <Spinner animation="border"></Spinner>
+            ) : (
+              props.companies.map(company => (
+                <option value={company._id}>{company.name}</option>
+              ))
+            )}
           </Form.Control>
         </FormGroup>
 

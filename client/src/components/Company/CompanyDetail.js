@@ -5,20 +5,22 @@ import { Row } from "react-bootstrap";
 
 import { useRouteMatch } from "react-router-dom";
 
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { fetchCompany } from "../../actions";
 
 const CompanyDetail = props => {
-  let match = useRouteMatch("/forms/company/:companyId");
-  const { companyId } = match.params;
+  let match = useRouteMatch("/forms/company/:compId");
+  const { compId } = match.params;
   console.log(match.params.companyId);
   console.log(props);
+
+  const dispatch = useDispatch();
 
   const company = props.companies;
 
   useEffect(() => {
-    props.fetchCompany(companyId);
-  }, []);
+    dispatch(fetchCompany(compId));
+  }, [dispatch]);
 
   return (
     <>

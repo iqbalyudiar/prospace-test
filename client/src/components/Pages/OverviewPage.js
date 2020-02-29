@@ -4,13 +4,14 @@ import CreateOffice from "../Create/CreateOffice";
 import CompanyList from "../Company/CompanyList";
 import { Row, Col, Card } from "react-bootstrap";
 
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { fetchCompanies } from "../../actions";
 
 const OverviewPage = props => {
+  const dispatch = useDispatch();
   useEffect(() => {
-    props.fetchCompanies();
-  }, []);
+    dispatch(fetchCompanies());
+  }, [dispatch]);
 
   return (
     <Card>

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+
 import { Card, Col, Row, Modal, Button } from "react-bootstrap";
 import { useRouteMatch } from "react-router-dom";
 
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { fetchOffices, deleteOffice } from "../../actions";
 
 const Office = props => {
@@ -15,6 +15,8 @@ const Office = props => {
     office: ""
   });
 
+  const dispatch = useDispatch();
+
   const handleShow = id => {
     setShow(true);
     setIds({
@@ -25,14 +27,6 @@ const Office = props => {
     console.log("id dari handleshow", ids);
   };
   const handleClose = () => setShow(false);
-
-  // const handleClick = id => {
-  //   setIds({
-  //     company: companyId,
-  //     office: id
-  //   });
-  //   console.log("id dari handleCLick", ids);
-  // };
 
   const handleDelete = async id => {
     const { deleteOffice } = props;
@@ -46,8 +40,8 @@ const Office = props => {
   };
 
   useEffect(() => {
-    props.fetchOffices(companyID);
-  }, []);
+    dispatch(fetchOffices(companyID));
+  }, [dispatch]);
   return (
     <>
       {props.offices.map(office =>
