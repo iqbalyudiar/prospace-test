@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Card, Col, Row, Modal, Button } from "react-bootstrap";
 
 // import { deleteCompany } from "../../actions";
-import { fetchCompany } from "../../actions";
+import { fetchCompanies } from "../../actions";
 import { deleteCompany } from "../../actions";
 import { connect } from "react-redux";
 
@@ -33,7 +33,9 @@ const Company = props => {
                 <Row>
                   <Col>
                     <h3>
-                      <Link to={`/company/${company._id}`}>{company.name}</Link>
+                      <Link to={`forms/company/${company._id}`}>
+                        {company.name}
+                      </Link>
                     </h3>
                   </Col>
                   <Col>
@@ -88,6 +90,6 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchCompany, deleteCompany })(
+export default connect(mapStateToProps, { fetchCompanies, deleteCompany })(
   Company
 );

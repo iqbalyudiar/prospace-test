@@ -20,16 +20,7 @@ const CreateOffice = props => {
       ...input,
       [name]: value
     });
-
-    // setCompanyId(input.company);
   };
-
-  // const handleSelect = e => {
-  //   const { value } = e.target;
-  //   setInput({
-  //     company: value
-  //   });
-  // };
 
   const createOfficeForm = e => {
     e.preventDefault();
@@ -37,7 +28,6 @@ const CreateOffice = props => {
   };
 
   console.log(input);
-  // console.log(companyId);
 
   return (
     <div>

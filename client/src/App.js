@@ -12,7 +12,7 @@ function App() {
       <Router>
         <Switch>
           <Route path="/" exact component={OverviewPage} />
-          <Route path="/list/office" exact component={OfficePage} />
+          <Route path="/forms/company/:company" exact component={OfficePage} />
         </Switch>
       </Router>
     </div>

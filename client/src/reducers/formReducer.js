@@ -1,5 +1,6 @@
 import {
   ADD_COMPANY,
+  FETCH_COMPANIES,
   FETCH_COMPANY,
   DELETE_COMPANY,
   ADD_OFFICE,
@@ -15,6 +16,8 @@ export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case ADD_COMPANY:
       return { ...state, companies: state.companies.concat(action.payload) };
+    case FETCH_COMPANIES:
+      return { ...state, companies: action.payload };
     case FETCH_COMPANY:
       return { ...state, companies: action.payload };
     case DELETE_COMPANY:

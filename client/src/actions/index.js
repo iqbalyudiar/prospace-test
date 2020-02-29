@@ -1,5 +1,6 @@
 import {
   ADD_COMPANY,
+  FETCH_COMPANIES,
   FETCH_COMPANY,
   DELETE_COMPANY,
   ADD_OFFICE,
@@ -34,8 +35,14 @@ export const addCompany = company => async dispatch => {
   dispatch({ type: ADD_COMPANY, payload: response });
 };
 
-export const fetchCompany = () => async dispatch => {
+export const fetchCompanies = () => async dispatch => {
   const response = await forms.get("/forms/company");
+
+  dispatch({ type: FETCH_COMPANIES, payload: response.data });
+};
+
+export const fetchCompany = id => async dispatch => {
+  const response = await forms.get(`/forms/company/${id}`);
 
   dispatch({ type: FETCH_COMPANY, payload: response.data });
 };
