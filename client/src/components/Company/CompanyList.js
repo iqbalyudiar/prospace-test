@@ -3,16 +3,13 @@ import React from "react";
 import Company from "./Company";
 import { Row, Col } from "react-bootstrap";
 
-const CompanyList = () => {
+const CompanyList = ({ lists }) => {
   return (
     <div>
       <h2>Companies</h2>
       <Row>
         <Col>
-          <Company />
-        </Col>
-        <Col>
-          <Company />
+          <Company lists={lists} />
         </Col>
       </Row>
     </div>

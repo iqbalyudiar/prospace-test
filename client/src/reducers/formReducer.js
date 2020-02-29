@@ -7,31 +7,31 @@ import {
   DELETE_OFFICE
 } from "../actions/types";
 const INITIAL_STATE = {
-  company: [],
-  office: []
+  companies: [],
+  offices: []
 };
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case ADD_COMPANY:
-      return { ...state, company: state.company.concat(action.payload) };
+      return { ...state, companies: state.companies.concat(action.payload) };
     case FETCH_COMPANY:
-      return { ...state, company: action.payload };
+      return { ...state, companies: action.payload };
     case DELETE_COMPANY:
       return {
         ...state,
-        company: state.company.filter(
+        companies: state.companies.filter(
           company => company.companyId !== action.id
         )
       };
     case ADD_OFFICE:
-      return { ...state, office: state.office.concat(action.payload) };
+      return { ...state, offices: state.offices.concat(action.payload) };
     case FETCH_OFFICE:
-      return { ...state, office: action.payload };
+      return { ...state, offices: action.payload };
     case DELETE_OFFICE:
       return {
         ...state,
-        office: state.office.filter(office => office.officeId !== action.id)
+        offices: state.offices.filter(office => office.officeId !== action.id)
       };
 
     default:

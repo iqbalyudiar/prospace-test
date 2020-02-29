@@ -7,12 +7,6 @@ import { Form, FormGroup, Button, Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { addCompany } from "../../actions";
 
-const mapDispatchToProps = dispatch => {
-  return {
-    addCompany: company => dispatch(addCompany(company))
-  };
-};
-
 const CreateCompany = props => {
   const [input, setInput] = useState({
     name: "",
@@ -35,33 +29,9 @@ const CreateCompany = props => {
 
     props.addCompany(input);
 
-    // axios
-    //   .post("http://localhost:8080/forms/company/", {
-    //     headers: { "Content-Type": "application/json" },
-    //     data: JSON.stringify(input)
-    //   })
-    fetch("http://localhost:8080/forms/company/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(input)
-    })
-      .then(response => console.log(response))
-      .catch(err => console.log(err));
-    // .then(initialState());
-    // const initialState = () => {
-    //   setInput({
-    //     name: "",
-    //     address: "",
-    //     revenue: "",
-    //     phoneCode: "",
-    //     phoneNumber: ""
-    //   });
-    // };
-
     console.log(input);
   };
+  console.log(props.companies);
 
   // console.log(input);
 
@@ -128,8 +98,8 @@ const CreateCompany = props => {
 
 const mapStateToProps = state => {
   return {
-    company: state.company
+    companies: state.companies
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateCompany);
+export default connect(mapStateToProps, { addCompany })(CreateCompany);
