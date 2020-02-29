@@ -73,3 +73,9 @@ export const fetchOffices = id => async dispatch => {
 
   dispatch({ type: FETCH_OFFICES, payload: response.data });
 };
+
+export const deleteOffice = id => async dispatch => {
+  await forms.delete(`forms/company/${id.company}/office/${id.office}`);
+
+  dispatch({ type: DELETE_OFFICE, payload: id });
+};

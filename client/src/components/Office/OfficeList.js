@@ -11,9 +11,6 @@ const OfficeList = () => {
         <Col>
           <Office />
         </Col>
-        <Col>
-          <Office />
-        </Col>
       </Row>
     </div>
   );
