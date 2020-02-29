@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, FormGroup, Row, Col, Button } from "react-bootstrap";
+import { Form, FormGroup, Row, Col, Button, Alert } from "react-bootstrap";
 import { connect } from "react-redux";
 import { addOffice } from "../../actions";
 
@@ -12,17 +12,41 @@ const CreateOffice = props => {
     companyId: ""
   });
 
+  const [validation, setValidation] = useState(false);
+  const [message, setMessage] = useState("");
+
   const handleInput = e => {
     const { name, value } = e.target;
     setInput({
       ...input,
-      [name]: value
+      [name]:
+        name === "latitude" || name === "longitude" ? parseFloat(value) : value
     });
   };
 
-  const createOfficeForm = e => {
+  const createOfficeForm = async e => {
     e.preventDefault();
-    props.addOffice(input);
+
+    let { name, latitude, longitude, officeDate, companyId } = input;
+
+    if (!name) {
+      setValidation(true);
+      setMessage("Your Office Name Can Not Be Empty");
+    } else if (!latitude) {
+      setValidation(true);
+      setMessage("Your Office Latitude Can Not Be Empty And Must Be Number");
+    } else if (!longitude) {
+      setValidation(true);
+      setMessage("Your Office Longitude Can Not Be Empty And Must Be Number");
+    } else if (!officeDate) {
+      setValidation(true);
+      setMessage("Your Office Start Date Can Not Be Empty");
+    } else if (!companyId) {
+      setValidation(true);
+      setMessage("Your Office Company Can Not Be Empty");
+    }
+
+    await props.addOffice(input);
     window.location.reload();
   };
 
@@ -31,6 +55,7 @@ const CreateOffice = props => {
   return (
     <div>
       <h2>Create Office</h2>
+      {validation && <Alert variant="danger">{message}</Alert>}
       <Form>
         <FormGroup controlId="name">
           <Form.Label>Name:</Form.Label>

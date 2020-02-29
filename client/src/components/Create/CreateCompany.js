@@ -41,19 +41,19 @@ const CreateCompany = props => {
       setMessage("Your Form Adress Can Not Be Empty");
     } else if (!revenue) {
       setValidation(true);
-      setMessage("Your Form Revenue Can Not Be Empty");
+      setMessage("Your Form Revenue Can Not Be Empty And Must Be Number");
     } else if (revenue < 0 || !Number.isInteger(revenue)) {
       setValidation(true);
       setMessage("Your Revenue Can Not Be Negative");
     } else if (!phoneCode) {
       setValidation(true);
-      setMessage("Your Phone Code Can Not Be Empty");
+      setMessage("Your Phone Code Can Not Be Empty And Must Be Number");
     } else if (phoneCode < 0 || !Number.isInteger(phoneCode)) {
       setValidation(true);
       setMessage("Phone Code Must Be Positive");
     } else if (!phoneNumber) {
       setValidation(true);
-      setMessage("Your Phone Number Can Not Be Empty");
+      setMessage("Your Phone Number Can Not Be Empty And Must Be Number");
     } else if (phoneNumber < 0 || !Number.isInteger(phoneNumber)) {
       setValidation(true);
       setMessage("Phone Number Must Be Positive");
