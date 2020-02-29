@@ -3,6 +3,7 @@ import { Form, FormGroup, Button, Row, Col } from "react-bootstrap";
 
 import { connect } from "react-redux";
 import { addCompany } from "../../actions";
+import { Alert } from "react-bootstrap";
 
 const CreateCompany = props => {
   const [input, setInput] = useState({
@@ -13,30 +14,60 @@ const CreateCompany = props => {
     phoneNumber: ""
   });
 
+  const [validation, setValidation] = useState(false);
+  const [message, setMessage] = useState("");
+
   const handleInput = e => {
     const { name, value } = e.target;
     setInput({
       ...input,
-      [name]: value
+      [name]:
+        name === "revenue" || name === "phoneCode" || name === "phoneNumber"
+          ? parseInt(value)
+          : value
     });
   };
 
   const createCompanyForm = async e => {
     e.preventDefault();
 
+    let { name, address, revenue, phoneCode, phoneNumber } = input;
+
+    if (!name) {
+      setValidation(true);
+      setMessage("Your Form Name Can Not Be Empty");
+    } else if (!address) {
+      setValidation(true);
+      setMessage("Your Form Adress Can Not Be Empty");
+    } else if (!revenue) {
+      setValidation(true);
+      setMessage("Your Form Revenue Can Not Be Empty");
+    } else if (revenue < 0 || !Number.isInteger(revenue)) {
+      setValidation(true);
+      setMessage("Your Revenue Can Not Be Negative");
+    } else if (!phoneCode) {
+      setValidation(true);
+      setMessage("Your Phone Code Can Not Be Empty");
+    } else if (phoneCode < 0 || !Number.isInteger(phoneCode)) {
+      setValidation(true);
+      setMessage("Phone Code Must Be Positive");
+    } else if (!phoneNumber) {
+      setValidation(true);
+      setMessage("Your Phone Number Can Not Be Empty");
+    } else if (phoneNumber < 0 || !Number.isInteger(phoneNumber)) {
+      setValidation(true);
+      setMessage("Phone Number Must Be Positive");
+    }
+
     await props.addCompany(input);
 
-    console.log(input);
-
-    await window.location.reload();
+    window.location.reload();
   };
-  console.log(props.companies);
-
-  // console.log(input);
 
   return (
     <div>
       <h2>Create Company</h2>
+      {validation && <Alert variant="danger">{message}</Alert>}
       <Form onSubmit={e => createCompanyForm(e)}>
         <FormGroup controlId="nameCompany">
           <Form.Label>Name:</Form.Label>
