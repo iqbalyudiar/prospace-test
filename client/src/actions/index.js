@@ -4,7 +4,7 @@ import {
   FETCH_COMPANY,
   DELETE_COMPANY,
   ADD_OFFICE,
-  FETCH_OFFICE,
+  FETCH_OFFICES,
   DELETE_OFFICE
 } from "./types";
 import forms from "../apis/forms";
@@ -66,4 +66,10 @@ export const addOffice = office => async dispatch => {
   );
 
   dispatch({ type: ADD_OFFICE, payload: response });
+};
+
+export const fetchOffices = id => async dispatch => {
+  const response = await forms.get(`forms/company/${id}/office`);
+
+  dispatch({ type: FETCH_OFFICES, payload: response.data });
 };

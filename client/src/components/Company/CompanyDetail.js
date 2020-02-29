@@ -10,12 +10,11 @@ import { fetchCompany } from "../../actions";
 
 const CompanyDetail = props => {
   let match = useRouteMatch("/forms/company/:companyId");
+  const { companyId } = match.params;
   console.log(match.params.companyId);
   console.log(props);
 
   const company = props.companies;
-
-  const { companyId } = match.params;
 
   useEffect(() => {
     props.fetchCompany(companyId);
