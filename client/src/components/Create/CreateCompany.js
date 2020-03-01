@@ -126,10 +126,4 @@ const CreateCompany = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    companies: state.companies
-  };
-};
-
-export default connect(mapStateToProps, { addCompany })(CreateCompany);
+export default connect(null, { addCompany })(CreateCompany);
